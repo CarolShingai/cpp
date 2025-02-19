@@ -1,39 +1,38 @@
 #compiler
-NAME = megaphone
+NAME = phonebook
 CXX = c++
-CXXFlags = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # directories
-SRC_DIR =./ex01
-OBJ_DIR =./obj
+SRC_DIR = ./src
+OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC =  $(SRC_DIR)/index.cpp
+SRC =  $(SRC_DIR)/contact.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFlags) $(OBJ) -o $(NAME)
-	echo "Meus objetos $(OBJ)"
-	echo "$(NAME) it's done!"
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	echo "$(NAME) it's Done!"
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CXX) $(CXXFlags) -c $< -o $@
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "removing objects"
+	echo "Objects files removed."
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "removing executables"
+	@rm -f $(NAME)
+	@echo "Executable file removed."
 
 re: fclean all
 
-.PHONY: all clear fclean re
+.PHONY: all clean fclean re
