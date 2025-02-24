@@ -1,4 +1,4 @@
-#include "../include/contact.hpp"
+#include "../include/Contact.hpp"
 
 Contact::Contact() {}
 Contact::Contact(int p, int a, std::string n, std::string bdate, Hobby h) :
@@ -18,9 +18,13 @@ std::string hobbytoString(Hobby activity)
 			return("Dancing");
 		case drawing:
 			return("Drawing");
+		default:
+			return("Unknown");
 	}
 }
 
+
+// Getter
 int Contact::getPhone()
 {
 	return (this->_phone);
@@ -45,8 +49,37 @@ Hobby Contact::getHobby()
 {
 	return (this->_activity);
 }
+
+// Setters
+void Contact::setName(std::string n)
+{
+	this->_name = n;
+}
+
+void Contact::setPhone(int p)
+{
+	this->_phone = p;
+}
+
+void Contact::setBirthDate(std::string bdate)
+{
+	this->_birthDate = bdate;
+}
+
+void Contact::setAge(int a)
+{
+	this->_age = a;
+}
+
+void Contact::setHobby(Hobby h)
+{
+	this->_activity = h;
+}
+
+// others
 void Contact::info()
 {
-	std::cout << "Nome: " << _name << " | Telefone: " << _phone << "Data de Nascimento: " << _birthDate << " | Idade" << _age
-	<< "Hobby: " << hobbytoString(_activity) << std::endl;
+	std::cout << "PhoneBook" << std::endl;
+	std::cout << "Nome: " << _name << " | Telefone: " << _phone << " | Data de Nascimento: " << _birthDate << " | Idade: " << _age
+	<< " | Hobby: " << hobbytoString(_activity) << std::endl;
 }

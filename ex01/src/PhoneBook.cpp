@@ -1,11 +1,13 @@
-#include "../include/phonebook.hpp"
+#include "../include/PhoneBook.hpp"
 
 PhoneBook::PhoneBook() : iterator(0), size(8){}
 
 void PhoneBook::addContact(Contact newPerson)
 {
 	if (iterator == 8)
+	{
 		iterator = 0;
+	}
 	phoneList[iterator] = newPerson;
 	iterator += 1;
 }

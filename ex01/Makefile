@@ -9,7 +9,7 @@ OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC =  $(SRC_DIR)/contact.cpp $(SRC_DIR)/phonebook.cpp $(SRC_DIR)/main.cpp
+SRC =  $(SRC_DIR)/Contact.cpp $(SRC_DIR)/PhoneBook.cpp $(SRC_DIR)/main.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
