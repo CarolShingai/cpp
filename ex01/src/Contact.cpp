@@ -1,59 +1,60 @@
 #include "../include/Contact.hpp"
 
 Contact::Contact() {}
-Contact::Contact(int p, int a, std::string n, std::string bdate, Hobby h) :
-_name(n), _birthDate(bdate), _age(a), _phone(p), _activity(h){}
+Contact::Contact(std::string p, std::string nick, std::string n, std::string sname, DarkSecret h) :
+_firstName(n), _surname(sname), _nickname(nick), _phone(p), _darkestSecret(h){}
 
-std::string hobbytoString(Hobby activity)
+std::string hobbytoString(DarkSecret activity)
 {
 	switch(activity)
 	{
-		case movies:
-			return ("Movies");
-		case sports:
-			return ("Sports");
-		case cooking:
-			return("Cooking");
-		case dancing:
-			return("Dancing");
-		case drawing:
-			return("Drawing");
+		case HiddenRivalry:
+			return ("Hidden Rivalry");
+		case QuietConspiracy:
+			return ("Quiet Conspiracy");
+		case DangerousAlly:
+			return("Dangerous Ally");
+		case HiddenAgenda:
+			return("Hidden Agenda");
+		case SinisterDeal:
+			return("Sinister Deal");
+		case MemoryLeaks:
+			return("Memory Leaks");
 		default:
 			return("Unknown");
 	}
 }
 
-
 // Getter
-int Contact::getPhone()
+std::string Contact::getPhone()
 {
 	return (this->_phone);
 }
 
-std::string Contact::getName()
+std::string Contact::getFirstName()
 {
-	return (this->_name);
+	return (this->_firstName);
 }
 
-std::string Contact::getBirthDate()
+std::string Contact::getSurname()
 {
-	return (this->_birthDate);
+	return (this->_surname);
 }
 
-int Contact::getAge()
+std::string Contact::getNickname()
 {
-	return (this->_age);
+	return (this->_nickname);
 }
 
-Hobby Contact::getHobby()
+DarkSecret Contact::getDarkSecret()
 {
-	return (this->_activity);
+	return (this->_darkestSecret);
 }
 
 // Setters
-void Contact::setName(std::string n)
+void Contact::setFirstName(std::string n)
 {
-	this->_name = n;
+	this->_firstName = n;
 }
 
 void Contact::setPhone(int p)
@@ -61,25 +62,25 @@ void Contact::setPhone(int p)
 	this->_phone = p;
 }
 
-void Contact::setBirthDate(std::string bdate)
+void Contact::setSurname(std::string sname)
 {
-	this->_birthDate = bdate;
+	this->_surname = sname;
 }
 
-void Contact::setAge(int a)
+void Contact::setNickname(std::string nick)
 {
-	this->_age = a;
+	this->_nickname = nick;
 }
 
-void Contact::setHobby(Hobby h)
+void Contact::setDarkSecret(DarkSecret h)
 {
-	this->_activity = h;
+	this->_darkestSecret = h;
 }
 
 // others
 void Contact::info()
 {
 	std::cout << "PhoneBook" << std::endl;
-	std::cout << "Nome: " << _name << " | Telefone: " << _phone << " | Data de Nascimento: " << _birthDate << " | Idade: " << _age
-	<< " | Hobby: " << hobbytoString(_activity) << std::endl;
+	std::cout << "Nome: " << _firstName << " | Surname: " << _surname << "  | Apelido: " << _nickname << " | Telefone: " << _phone
+	<< " | DarkSecret: " << hobbytoString(_darkestSecret) << std::endl;
 }

@@ -10,8 +10,10 @@ class PhoneBook
 {
 		private:
 			Contact phoneList[8];
-			int iterator;
+			int	iterator;
 			int	size;
+			void removeElement(int &size);
+			void checkSize();
 
 		public:
 			PhoneBook();

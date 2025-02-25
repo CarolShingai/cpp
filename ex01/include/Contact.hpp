@@ -5,42 +5,44 @@
 # include <string>
 # include <vector>
 
-enum Hobby{
-	movies,
-	sports,
-	cooking,
-	dancing,
-	drawing,
+enum DarkSecret
+{
+	HiddenRivalry,
+	QuietConspiracy,
+	DangerousAlly,
+	HiddenAgenda,
+	SinisterDeal,
+	MemoryLeaks,
 };
 
 class Contact{
 	private:
-		std::string _name;
-		std::string _birthDate;
-		int _age;
-		int _phone;
-		Hobby _activity;
+		std::string _firstName;
+		std::string _surname;
+		std::string _nickname;
+		std::string _phone;
+		DarkSecret _darkestSecret;
 
 	public:
 	// constructor
 		Contact();
-		Contact(int p, int a, std::string n, std::string bdate, Hobby h);
+		Contact(std::string n, std::string sname, std::string p, std::string nick, DarkSecret s);
 	// getter
-		int getPhone();
-		std::string getName();
-		int getAge();
-		std::string getBirthDate();
-		Hobby getHobby();
+		std::string getFirstName();
+		std::string getSurname();
+		std::string getPhone();
+		std::string getNickname();
+		DarkSecret getDarkSecret();
 	// setter
-		void setName(std::string n);
+		void setFirstName(std::string n);
+		void setSurname(std::string sname);
 		void setPhone(int p);
-		void setBirthDate(std::string bdate);
-		void setAge(int a);
-		void setHobby(Hobby h);
+		void setNickname(std::string nick);
+		void setDarkSecret(DarkSecret s);
 	// others
 		void info();
 };
 
-std::string hobbytoString(Hobby activity);
+std::string hobbytoString(DarkSecret activity);
 
 #endif
