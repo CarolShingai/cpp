@@ -1,6 +1,10 @@
 #include "../include/PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : iterator(0), size(8){}
+PhoneBook::PhoneBook() : iterator(0), size(8)
+{
+	this->_line = "";
+	this->_operation = "";
+}
 
 // Set limit and remove the older contact
 void PhoneBook::removeElement(int &size)
@@ -29,39 +33,36 @@ bool checkNames(std::string name)
 	return (true);
 }
 
-bool checkAge(int age)
-{
-	if (age < 0)
-		return (false);
-	return (true);
-}
-
 bool checkPhone(std::string phone)
 {
 	if (phone.empty())
 		return (false);
 	for (int i = 0; i < phone.size(); i++)
 	{
-		if (!isdigit(phone[i]))
+		if (!std::isdigit(phone[i]))
 			return (false);
 	}
 	return (true);
 }
 
-// void validateInput(std::string type)
-// {
-// 	std::string status = (type == Name) ? checkPhone()
-// }
-
+bool checkOnlySpace(std::string str)
+{
+	for (int i = 0; i < str.size(); i++)
+	{
+		if (!std::isspace(str[i]))
+			return (false);
+	}
+	return (true);
+}
 
 
 // PhoneBook User tools
-void PhoneBook::addContact(Contact newPerson)
-{
-	checkSize();
-	phoneList[iterator].setFirstName = newPerson.;
-	iterator += 1;
-}
+// void PhoneBook::addContact(Contact newPerson)
+// {
+// 	checkSize();
+// 	phoneList[iterator].setFirstName(th) = newPerson.getFirstName();
+// 	iterator += 1;
+// }
 
 void PhoneBook::search(Contact person)
 {
@@ -70,5 +71,18 @@ void PhoneBook::search(Contact person)
 		if (phoneList[i].getFirstName() == person.getFirstName())
 			phoneList[i].info();
 		i++;
+	}
+}
+
+
+void PhoneBook::initPhoneBook()
+{
+	std::cout << "Welcome to Phonebook!";
+	while (1)
+	{
+		std::cout << "Insert an operation, please. [ADD], [SEARCH], [EXIT]";
+		std::getline(std::cin , this->_operation);
+		if (_operation.empty() || !checkOnlySpace(_operation))
+			continue;
 	}
 }

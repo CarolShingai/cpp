@@ -57,7 +57,7 @@ void Contact::setFirstName(std::string n)
 	this->_firstName = n;
 }
 
-void Contact::setPhone(int p)
+void Contact::setPhone(std::string p)
 {
 	this->_phone = p;
 }

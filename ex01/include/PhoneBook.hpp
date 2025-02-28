@@ -10,10 +10,14 @@ class PhoneBook
 {
 		private:
 			Contact phoneList[8];
+			std::string _line;
+			std::string _operation;
 			int	iterator;
 			int	size;
 			void removeElement(int &size);
 			void checkSize();
+			void getInput();
+			void initPhoneBook();
 
 		public:
 			PhoneBook();

@@ -36,7 +36,7 @@ class Contact{
 	// setter
 		void setFirstName(std::string n);
 		void setSurname(std::string sname);
-		void setPhone(int p);
+		void setPhone(std::string p);
 		void setNickname(std::string nick);
 		void setDarkSecret(DarkSecret s);
 	// others
