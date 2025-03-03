@@ -13,6 +13,7 @@ enum DarkSecret
 	HiddenAgenda,
 	SinisterDeal,
 	MemoryLeaks,
+	Unknown
 };
 
 class Contact{
@@ -43,6 +44,8 @@ class Contact{
 		void info();
 };
 
-std::string hobbytoString(DarkSecret activity);
+std::string SecrettoString(DarkSecret activity);
+DarkSecret stringHiddenSecret(const std::string& secret);
+DarkSecret nbrtoHiddenSecret(int nbr);
 
 #endif

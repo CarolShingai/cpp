@@ -3,7 +3,8 @@
 # include <iostream>
 # include <cctype>
 # include <string>
-# include <list>
+# include <iomanip>
+# include <cstdlib>
 # include "Contact.hpp"
 
 class PhoneBook
@@ -12,17 +13,24 @@ class PhoneBook
 			Contact phoneList[8];
 			std::string _line;
 			std::string _operation;
+			DarkSecret _secret;
 			int	iterator;
 			int	size;
 			void removeElement(int &size);
 			void checkSize();
 			void getInput();
-			void initPhoneBook();
+			void displayContact();
+			void printContact(Contact contact, int index);
+			void printFormat(std::string str);
+			bool checkNames(std::string name);
+			bool checkPhone(std::string phone);
+			bool checkOnlySpace(std::string str);
 
 		public:
+			void initPhoneBook();
 			PhoneBook();
-			void addContact(Contact newPerson);
-			void search(Contact person);
+			void addContact();
+			void search();
 };
 
 # endif

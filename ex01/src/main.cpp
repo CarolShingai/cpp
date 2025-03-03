@@ -4,7 +4,8 @@
 int main()
 {
 	PhoneBook MyPhoneBook;
-	Contact contact1("564564646", 45, "sfdcf", "Chuva", sports);
-	MyPhoneBook.addContact(contact1);
-	MyPhoneBook.search(contact1);
+	Contact contact1("caroline", "jgasjj", "carol", "123456", HiddenRivalry);
+	MyPhoneBook.initPhoneBook();
+	// MyPhoneBook.addContact(contact1);
+	// MyPhoneBook.search(contact1);
 }

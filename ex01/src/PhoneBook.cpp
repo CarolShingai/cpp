@@ -1,6 +1,6 @@
 #include "../include/PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : iterator(0), size(8)
+PhoneBook::PhoneBook() : iterator(0), size(0)
 {
 	this->_line = "";
 	this->_operation = "";
@@ -26,18 +26,18 @@ void PhoneBook::checkSize()
 }
 
 // Validate inputs
-bool checkNames(std::string name)
+bool PhoneBook::checkNames(std::string name)
 {
 	if (name.empty())
 		return (false);
 	return (true);
 }
 
-bool checkPhone(std::string phone)
+bool PhoneBook::checkPhone(std::string phone)
 {
 	if (phone.empty())
 		return (false);
-	for (int i = 0; i < phone.size(); i++)
+	for (int i = 0; i < static_cast<int>(phone.size()); i++)
 	{
 		if (!std::isdigit(phone[i]))
 			return (false);
@@ -45,9 +45,9 @@ bool checkPhone(std::string phone)
 	return (true);
 }
 
-bool checkOnlySpace(std::string str)
+bool PhoneBook::checkOnlySpace(std::string str)
 {
-	for (int i = 0; i < str.size(); i++)
+	for (int i = 0; i < static_cast <int>(str.size()); i++)
 	{
 		if (!std::isspace(str[i]))
 			return (false);
@@ -55,34 +55,19 @@ bool checkOnlySpace(std::string str)
 	return (true);
 }
 
-
-// PhoneBook User tools
-// void PhoneBook::addContact(Contact newPerson)
-// {
-// 	checkSize();
-// 	phoneList[iterator].setFirstName(th) = newPerson.getFirstName();
-// 	iterator += 1;
-// }
-
-void PhoneBook::search(Contact person)
+void PhoneBook::search()
 {
-	for (int i = 0; i < size; )
-	{
-		if (phoneList[i].getFirstName() == person.getFirstName())
-			phoneList[i].info();
-		i++;
-	}
+	std::cout << "Search for a contact: ";
+	phoneList[0].info();
+	displayContact();
 }
 
-
-void PhoneBook::initPhoneBook()
+void PhoneBook::displayContact()
 {
-	std::cout << "Welcome to Phonebook!";
-	while (1)
-	{
-		std::cout << "Insert an operation, please. [ADD], [SEARCH], [EXIT]";
-		std::getline(std::cin , this->_operation);
-		if (_operation.empty() || !checkOnlySpace(_operation))
-			continue;
-	}
+	std::cout << "Contact \n";
+	if (size == 0)
+		return;
+	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+	for (int i = 0; i < size; i++)
+		printContact(phoneList[i], i);
 }

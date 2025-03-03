@@ -4,7 +4,41 @@ Contact::Contact() {}
 Contact::Contact(std::string p, std::string nick, std::string n, std::string sname, DarkSecret h) :
 _firstName(n), _surname(sname), _nickname(nick), _phone(p), _darkestSecret(h){}
 
-std::string hobbytoString(DarkSecret activity)
+
+DarkSecret stringHiddenSecret(const std::string& secret)
+{
+    if (secret == "HiddenRivalry") return HiddenRivalry;
+    if (secret == "QuietConspiracy") return QuietConspiracy;
+    if (secret == "DangerousAlly") return DangerousAlly;
+    if (secret == "HiddenAgenda") return HiddenAgenda;
+    if (secret == "SinisterDeal") return SinisterDeal;
+    if (secret == "MemoryLeaks") return MemoryLeaks;
+    return Unknown;
+}
+
+DarkSecret nbrtoHiddenSecret(int nbr)
+{
+	switch(nbr)
+	{
+		case 0:
+			return (HiddenRivalry);
+		case 1:
+			return (QuietConspiracy);
+		case 2:
+			return (DangerousAlly);
+		case 3:
+			return (HiddenAgenda);
+		case 4:
+			return (SinisterDeal);
+		case 5:
+			return (MemoryLeaks);
+		default:
+			return (Unknown);
+	}
+}
+
+
+std::string SecretoString(DarkSecret activity)
 {
 	switch(activity)
 	{
@@ -82,5 +116,5 @@ void Contact::info()
 {
 	std::cout << "PhoneBook" << std::endl;
 	std::cout << "Nome: " << _firstName << " | Surname: " << _surname << "  | Apelido: " << _nickname << " | Telefone: " << _phone
-	<< " | DarkSecret: " << hobbytoString(_darkestSecret) << std::endl;
+	<< " | DarkSecret: " << SecretoString(_darkestSecret) << std::endl;
 }
