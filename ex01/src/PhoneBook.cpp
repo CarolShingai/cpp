@@ -68,7 +68,7 @@ void PhoneBook::displayContact()
 	std::cout << "Contact \n";
 	if (size == 0)
 		return;
-	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+	std::cout << "|     Index| FirstName|  LastName|  Nickname|" << std::endl;
 	for (int i = 0; i < size; i++)
 		printContact(phoneList[i], i);
 }

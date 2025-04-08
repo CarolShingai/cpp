@@ -115,6 +115,10 @@ void Contact::setDarkSecret(DarkSecret h)
 void Contact::info()
 {
 	std::cout << "PhoneBook" << std::endl;
-	std::cout << "Nome: " << _firstName << " | Surname: " << _surname << "  | Apelido: " << _nickname << " | Telefone: " << _phone
-	<< " | DarkSecret: " << SecretoString(_darkestSecret) << std::endl;
+	std::cout << "Nome: " << _firstName << std::endl
+			<< "Surname: " << _surname << std::endl
+			<< "Apelido: " << _nickname << std::endl
+			<< "Telefone: " << _phone << std::endl
+			<< "DarkSecret: " << SecretoString(_darkestSecret)
+			<< std::endl;
 }
