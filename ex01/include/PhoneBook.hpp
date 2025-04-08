@@ -1,7 +1,6 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include <iostream>
-# include <cctype>
 # include <string>
 # include <iomanip>
 # include <cstdlib>
@@ -25,6 +24,12 @@ class PhoneBook
 			bool checkNames(std::string name);
 			bool checkPhone(std::string phone);
 			bool checkOnlySpace(std::string str);
+			bool insertFirstName();
+			bool insertSurname();
+			bool insertNickname();
+			bool insertPhone();
+			bool insertDarkSecret();
+			void getIndex();
 
 		public:
 			void initPhoneBook();

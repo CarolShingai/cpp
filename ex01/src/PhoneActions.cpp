@@ -5,52 +5,21 @@ void PhoneBook::addContact()
 	checkSize();
 	while (1)
 	{
-		std::cout << "Enter the first name: ";
-		std::getline(std::cin, this->_line);
-		if (!checkNames(this->_line))
-		{
-			std::cout << "Invalid name. Try again.\n";
+		if (!insertFirstName())
 			continue;
-		}
-		else
-			this->phoneList[iterator].setFirstName(this->_line);
-		std::cout << "Enter the surname: ";
-		std::getline(std::cin, this->_line);
-		if (!checkNames(this->_line))
-		{
-			std::cout << "Invalid surname. Try again.\n";
+		if (!insertSurname())
 			continue;
-		}
-		else
-			this->phoneList[iterator].setSurname(this->_line);
-		std::cout << "Enter the nickname: ";
-		std::getline(std::cin, this->_line);
-		if (!checkNames(this->_line))
-		{
-			std::cout << "Invalid nickname. Try again.\n";
+		if (!insertNickname())
 			continue;
-		}
-		else
-			this->phoneList[iterator].setNickname(this->_line);
-		std::cout << "Enter the phone number: ";
-		std::getline(std::cin, this->_line);
-		if (!checkPhone(this->_line))
-		{
-			std::cout << "Invalid phone number. Try again.\n";
+		if (!insertPhone())
 			continue;
-		}
+		if (!insertDarkSecret())
+			continue;
 		else
-			this->phoneList[iterator].setPhone(this->_line);
-		std::cout << "Enter the darkest secret (Insert a number between 0 and 5): ";
-		std::getline(std::cin, this->_line);
-		if (std::atoi(_line.c_str()) >= 0 && std::atoi(_line.c_str()) <= 5)
 		{
-			_secret = nbrtoHiddenSecret(std::atoi(_line.c_str()));
-			size++;
+			iterator++;
 			break;
 		}
-		else
-			std::cout << "Invalid secret. Try again.\n";
 	}
 }
 
@@ -77,6 +46,75 @@ void PhoneBook::initPhoneBook()
 			std::cout << "Invalid operation. Try again.\n";
 	}
 }
+//inserindo dados no phonebook
+bool	PhoneBook::insertFirstName()
+{
+	std::cout << "Enter the first name: ";
+	std::getline(std::cin, this->_line);
+	if (!checkNames(this->_line))
+	{
+		std::cout << "Invalid name. Try again.\n";
+		return (false);
+	}
+	this->phoneList[iterator].setFirstName(this->_line);
+	return (true);
+}
+
+bool PhoneBook::insertSurname()
+{
+	std::cout << "Enter the surname: ";
+	std::getline(std::cin, this->_line);
+	if (!checkNames(this->_line))
+	{
+		std::cout << "Invalid surname. Try again.\n";
+		return (false);
+	}
+	this->phoneList[iterator].setSurname(this->_line);
+	return (true);
+}
+
+bool PhoneBook::insertNickname()
+{
+	std::cout << "Enter the nickname: ";
+	std::getline(std::cin, this->_line);
+	if (!checkNames(this->_line))
+	{
+		std::cout << "Invalid nickname. Try again.\n";
+		return (false);
+	}
+	this->phoneList[iterator].setNickname(this->_line);
+	return (true);
+}
+
+bool PhoneBook::insertPhone()
+{
+	std::cout << "Enter the phone number: ";
+	std::getline(std::cin, this->_line);
+	if (!checkPhone(this->_line))
+	{
+		std::cout << "Invalid phone number. Try again.\n";
+		return (false);
+	}
+	this->phoneList[iterator].setPhone(this->_line);
+	return (true);
+}
+
+bool PhoneBook::insertDarkSecret()
+{
+	std::cout << "Enter the darkest secret (Insert a number between 0 and 5): ";
+	std::getline(std::cin, this->_line);
+	if (std::atoi(_line.c_str()) >= 0 && std::atoi(_line.c_str()) <= 5)
+	{
+		_secret = nbrtoHiddenSecret(std::atoi(_line.c_str()));
+		size++;
+		return (true);
+	}
+	std::cout << "Invalid secret. Try again.\n";
+	return (false);
+}
+
+// Printar lista
+
 
 void	PhoneBook::printFormat(std::string str)
 {
