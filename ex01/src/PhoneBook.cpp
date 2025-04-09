@@ -7,12 +7,12 @@ PhoneBook::PhoneBook() : iterator(0), size(0)
 }
 
 // Set limit and remove the older contact
-void PhoneBook::removeElement(int &size)
-{
-	for (int i = 0; i < size -1; i++)
-		phoneList[i] = phoneList[i + 1];
-	size--;
-}
+// void PhoneBook::removeElement(int &size)
+// {
+// 	for (int i = 0; i < size -1; i++)
+// 		phoneList[i] = phoneList[i + 1];
+// 	size--;
+// }
 
 void PhoneBook::checkSize()
 {
@@ -20,7 +20,6 @@ void PhoneBook::checkSize()
 	{
 		std::cout << "The list has reached its limit." << std::endl;
 		std::cout << "Removing Contact: " << phoneList[0].getFirstName() << std::endl;
-		removeElement(iterator);
 		iterator = 0;
 	}
 }
@@ -30,12 +29,16 @@ bool PhoneBook::checkNames(std::string name)
 {
 	if (name.empty())
 		return (false);
+	if (checkOnlySpace(name))
+		return (false);
 	return (true);
 }
 
 bool PhoneBook::checkPhone(std::string phone)
 {
 	if (phone.empty())
+		return (false);
+	if (checkOnlySpace(phone))
 		return (false);
 	for (int i = 0; i < static_cast<int>(phone.size()); i++)
 	{
@@ -85,7 +88,12 @@ void PhoneBook::getIndex()
 		return ;
 	}
 	id = std::atoi(this->_line.c_str());
-	if (id > size || id < 0)
+	if (id >= size || id < 0)
+	{
+		std::cout << "Invalid index. Try again.\n";
+		return ;
+	}
+	if (phoneList[id].getFirstName().empty())
 	{
 		std::cout << "Invalid index. Try again.\n";
 		return ;

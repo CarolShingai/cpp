@@ -18,6 +18,8 @@ void PhoneBook::addContact()
 		else
 		{
 			iterator++;
+			if (size < 8)
+				size++;
 			break;
 		}
 	}
@@ -103,10 +105,22 @@ bool PhoneBook::insertDarkSecret()
 {
 	std::cout << "Enter the darkest secret (Insert a number between 0 and 5): ";
 	std::getline(std::cin, this->_line);
+	if (checkOnlySpace(_line))
+	{
+		std::cout << "Invalid secret. Try again.\n";
+		return (false);
+	}
+	for (int i = 0; i < (int)_line.size(); i++)
+	{
+		if (std::isalpha(_line[i]))
+		{
+			std::cout << "Invalid secret. Try again.\n";
+			return (false);
+		}
+	}
 	if (std::atoi(_line.c_str()) >= 0 && std::atoi(_line.c_str()) <= 5)
 	{
 		_secret = nbrtoHiddenSecret(std::atoi(_line.c_str()));
-		size++;
 		return (true);
 	}
 	std::cout << "Invalid secret. Try again.\n";
