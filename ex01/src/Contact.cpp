@@ -1,8 +1,8 @@
 #include "../include/Contact.hpp"
 
 Contact::Contact() {}
-Contact::Contact(std::string p, std::string nick, std::string n, std::string sname, DarkSecret h) :
-_firstName(n), _surname(sname), _nickname(nick), _phone(p), _darkestSecret(h){}
+Contact::Contact(std::string p, std::string nick, std::string n, std::string sname, DarkSecret s) :
+_firstName(n), _surname(sname), _nickname(nick), _phone(p), _darkestSecret(s){}
 
 
 DarkSecret stringHiddenSecret(const std::string& secret)

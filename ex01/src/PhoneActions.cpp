@@ -121,6 +121,7 @@ bool PhoneBook::insertDarkSecret()
 	if (std::atoi(_line.c_str()) >= 0 && std::atoi(_line.c_str()) <= 5)
 	{
 		_secret = nbrtoHiddenSecret(std::atoi(_line.c_str()));
+		this->phoneList[iterator].setDarkSecret(_secret);
 		return (true);
 	}
 	std::cout << "Invalid secret. Try again.\n";

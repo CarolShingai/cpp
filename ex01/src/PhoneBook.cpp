@@ -61,7 +61,6 @@ bool PhoneBook::checkOnlySpace(std::string str)
 void PhoneBook::search()
 {
 	std::cout << "Search for a contact: ";
-	phoneList[0].info();
 	displayContact();
 	getIndex();
 }
