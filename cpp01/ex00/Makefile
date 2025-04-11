@@ -1,15 +1,15 @@
 #compiler
-NAME = phonebook
+NAME = zombie
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # directories
 SRC_DIR = ./src
-OBJ_DIR = ./obj
+OBJ_DIR =./obj
 BIN_DIR = bin
 
 # archives
-SRC =  $(SRC_DIR)/Contact.cpp $(SRC_DIR)/PhoneBook.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/PhoneActions.cpp
+SRC =  $(SRC_DIR)/zombie.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
@@ -17,10 +17,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
-	@echo "$(NAME) it's Done!"
+	echo "$(NAME) it's Done!"
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
