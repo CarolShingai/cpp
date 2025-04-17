@@ -9,12 +9,12 @@ class Zombie
 	private:
 		std::string _name;
 	public:
-	//setters
+		Zombie(std::string name);
 		void setName(std::string name);
-	//getters
 		std::string	getName(void);
-	//others
 		void announce(void);
 };
+
+Zombie* newZombie(std::string name);
 
 #endif

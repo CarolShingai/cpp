@@ -5,11 +5,11 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # directories
 SRC_DIR = ./src
-OBJ_DIR =./obj
+OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC =  $(SRC_DIR)/zombie.cpp
+SRC =  $(SRC_DIR)/NewZombie.cpp $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
