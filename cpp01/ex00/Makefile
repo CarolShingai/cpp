@@ -9,7 +9,7 @@ OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC =  $(SRC_DIR)/NewZombie.cpp $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp
+SRC =  $(SRC_DIR)/NewZombie.cpp $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/RandomChump.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
