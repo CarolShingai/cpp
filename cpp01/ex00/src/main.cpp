@@ -7,6 +7,6 @@ int main(void)
 	zombie->announce();
 	std::cout << "Creating a Zombie with randomChump in the Stack" << std::endl;
 	randomChump("Chump");
-	// std::cout << "Deleting the new Zombie..." << std::endl;
-	// delete zombie;
+	std::cout << "Deleting the new Zombie..." << std::endl;
+	delete zombie;
 }
