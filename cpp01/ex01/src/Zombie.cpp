@@ -1,5 +1,9 @@
 #include "../include/Zombie.hpp"
 
+Zombie::Zombie()
+{
+}
+
 Zombie::Zombie(std::string name) : _name(name)
 {
 	std::cout << "The Zombie " << this->_name << " had born" << std::endl;
