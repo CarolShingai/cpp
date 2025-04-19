@@ -1,8 +1,6 @@
-#include <string.h>
-#include <iostream>
-#include <fstream>
+#include "../include/replaceString.hpp"
 
 int main()
 {
-    
+	replaceFunctions::readFile("main.cpp");
 }

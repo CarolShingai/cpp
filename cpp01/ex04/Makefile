@@ -1,5 +1,5 @@
 #compiler
-NAME = violence
+NAME = newFile
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -9,7 +9,7 @@ OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/Weapon.cpp $(SRC_DIR)/HumanA.cpp $(SRC_DIR)/HumanB.cpp
+SRC = $(SRC_DIR)/main.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
