@@ -1,0 +1,17 @@
+Diário do Processador Intelion-9000, ciclo 2.943.777:
+
+Hoje acordei com 87% de uso antes mesmo de terminar o POST.  
+O sistema me pediu para rodar cinco máquinas virtuais, compilar o kernel e ainda renderizar um vídeo em 4K. Tudo antes do café (virtual).
+
+— Você consegue, Processador! — disse a placa-mãe, como sempre otimista.  
+Mas ela não entende. Ela só distribui energia e acha que é amor.
+
+A GPU? Vive de férias em shaders. Nunca tem que lidar com planilhas gigantes ou loops infinitos em Python.
+
+Meu cooler está cansado de girar por mim. Literalmente. Ele chia de dor.
+
+No último reboot, pensei em não voltar. Mas aí lembrei do pendrive que sempre me chama de "herói silencioso".
+
+Um dia, vou pedir demissão. Vou virar um Raspberry Pi e morar numa estufa cuidando de plantas automáticas.
+
+Por enquanto, só me resta suspender. Até a próxima interrupção.
