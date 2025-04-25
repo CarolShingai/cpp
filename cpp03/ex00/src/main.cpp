@@ -8,6 +8,7 @@ int main(){
 	frank.attack("john");
 	john.takeDamage(5);
 	frank.attack("john");
+	john.beRepaired(5);
 	john.takeDamage(10);
 	john.attack("frank");
 }
