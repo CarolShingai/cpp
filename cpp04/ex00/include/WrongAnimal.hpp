@@ -1,5 +1,5 @@
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include <iostream>
 # include <string>
@@ -14,16 +14,17 @@
 # define ORANGE "\033[38;5;208m"
 # define RESET "\033[0m"
 
-class Animal{
+class WrongAnimal{
 	protected:
 		std::string type;
 	public:
-		Animal(std::string type);
-		Animal(const Animal &copy);
-		Animal &operator=(const Animal &copy);
-		~Animal();
+		WrongAnimal();
+		WrongAnimal(std::string type);
+		WrongAnimal(const WrongAnimal &copy);
+		WrongAnimal &operator=(const WrongAnimal &copy);
+		~WrongAnimal();
 
-		void makeSound();
+		void makeSound() const;
 };
 
 # endif
