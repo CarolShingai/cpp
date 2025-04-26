@@ -21,6 +21,6 @@ WrongCat::~WrongCat(){
     std::cout << RED << "Wrong Cat destructor called" << RESET << std::endl;
 }
  
-WrongCat::makeSound(){
+void WrongCat::makeSound() const{
     std::cout << "Wrong sound auuuuu by the wrong cat." << std::endl;
 }
