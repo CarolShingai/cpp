@@ -25,14 +25,18 @@ Brain::~Brain(){
 }
 
 void Brain::setBrain(std::string s, int index){
-	if (index >= 100)
-		std::cout << "Index out of range, please a index between 0 and 99";
+	if (index < 0 || index >= 100)
+		std::cerr << "Index out of range, please a index between 0 and 99" << std::endl;
 	else{
-		std::cout << "Insertig idea";
+		std::cout << "Inserting idea at index: " << index << std::endl;
 		this->_idea[index] = s;
 	}
 }
 
 std::string Brain::getIdea(int index){
+	if (index < 0 || index >= 100) {
+        std::cerr << "Index out of range, returning empty string.\n";
+        return "";
+    }
 	return (this->_idea[index]);
 }
