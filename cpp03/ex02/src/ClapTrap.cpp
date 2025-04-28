@@ -85,3 +85,7 @@ int ClapTrap::getHitPoints(){
 int ClapTrap::getEnergyPoints(){
     return (this->_energyPoints);
 }
+
+int ClapTrap::getAttackDamage(){
+    return (this->_atackDamage);
+}

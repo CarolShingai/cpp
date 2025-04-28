@@ -40,7 +40,7 @@ void ClapTrap::attack(const std::string& target){
         return ;
     }
     if (_hitPoints <= 0){
-        std::cout << ORANGE << "Claptrack " << this->_name << " is dead. It has no hit points." << RESET << std::endl;
+        std::cout << ORANGE << "ClapTrack " << this->_name << " is dead. It has no hit points." << RESET << std::endl;
         return ;
     }
     std::cout << "ClapTrap " << this->_name << " attacks " << target << " causing "
@@ -84,4 +84,8 @@ int ClapTrap::getHitPoints(){
 
 int ClapTrap::getEnergyPoints(){
     return (this->_energyPoints);
+}
+
+int ClapTrap::getAttackDamage(){
+    return (this->_atackDamage);
 }
