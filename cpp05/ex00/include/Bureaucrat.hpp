@@ -2,13 +2,24 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include <ostream>
 # include <string>
 # include <cstdlib>
 # include "./GradeTooHighException.hpp"
 # include "./GradeTooLowException.hpp"
 
+// color
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define PURPLE "\033[38;5;93m"
+# define CYAN "\033[36m"
+# define ORANGE "\033[38;5;208m"
+# define RESET "\033[0m"
+
 class Bureaucrat{
-    private: 
+    private:
         const std::string _name;
         int _grade;
     public:
@@ -21,16 +32,11 @@ class Bureaucrat{
         const std::string getName();
         int getGrade();
 
-        Bureaucrat &operator++();
-        Bureaucrat operator++(int);
-        Bureaucrat &operator--();
-        Bureaucrat operator--(int);
-
-        // void GradeTooLowException();
-        // void GradeTooHighException();
+        void incrementGrade();
+        void decrementGrade();
 };
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &bur);
+std::ostream &operator<<(std::ostream &os, Bureaucrat &bur);
 
 
 #endif

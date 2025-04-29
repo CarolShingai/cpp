@@ -29,3 +29,20 @@ const std::string Bureaucrat::getName(){
 int Bureaucrat::getGrade(){
     return (this->_grade);
 }
+
+void Bureaucrat::incrementGrade(){
+    if (_grade < 1)
+        throw GradeTooHighException();
+    _grade--;
+}
+
+void Bureaucrat::decrementGrade(){
+    if (_grade > 150)
+        throw GradeTooLowException();
+    _grade++;
+}
+
+std::ostream &operator<<(std::ostream &os, Bureaucrat &bur){
+    os << bur.getName() << " Bureaucrat grade: " << bur.getGrade();
+    return (os);
+}
