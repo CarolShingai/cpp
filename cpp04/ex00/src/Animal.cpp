@@ -22,7 +22,7 @@ Animal &Animal::operator=(const Animal &copy){
 }
 
 Animal::~Animal(){
-	std::cout << RED << "Animal " << type << " had died" << RESET << std::endl;
+	std::cout << RED << "Animal " << type << " had died!" << RESET << std::endl;
 }
 
 // metodo

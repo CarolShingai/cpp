@@ -18,7 +18,7 @@ Dog &Dog::operator=(const Dog &copy){
 }
 
 Dog::~Dog(){
-    std::cout << RED << "🐶 Dog had run away! 💨💨💨!" << RESET << std::endl;
+    std::cout << RED << "🐶 Dog had run away 💨💨💨!" << RESET << std::endl;
 }
 
 void Dog::makeSound() const{

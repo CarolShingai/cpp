@@ -18,7 +18,7 @@ Cat &Cat::operator=(const Cat &copy){
 }
 
 Cat::~Cat(){
-    std::cout << RED << "🐈‍⬛ Cat had gone!" << RESET << std::endl;
+    std::cout << RED << "🐈‍ Cat had gone!" << RESET << std::endl;
 }
 
 void Cat::makeSound() const{
