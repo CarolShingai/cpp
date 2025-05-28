@@ -7,11 +7,12 @@
 # include <cstdlib>
 # include "./GradeTooHighException.hpp"
 # include "./GradeTooLowException.hpp"
+# include "./Form.hpp"
 
 // color
 # define RED "\033[31m"
 # define GREEN "\033[32m"
-# define YELLOW "\033[33m"  
+# define YELLOW "\033[33m"
 # define BLUE "\033[34m"
 # define PURPLE "\033[38;5;93m"
 # define CYAN "\033[36m"
@@ -34,6 +35,7 @@ class Bureaucrat{
 
         void incrementGrade();
         void decrementGrade();
+        void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bur);

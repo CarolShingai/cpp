@@ -31,6 +31,25 @@ class Form{
 		~Form();
 		Form(const Form &copy);
 		Form &operator=(const Form &copy);
+
+		//getter
+		const std::string getName() const;
+		const int getGradeSign() const;
+		const int getGradeExecute() const;
+		bool getIsSigned() const;
+
+		void beSigned(Bureaucrat &bureaucrat);
+
+		// Exception
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &os, Form &form);

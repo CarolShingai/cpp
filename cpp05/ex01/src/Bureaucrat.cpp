@@ -42,6 +42,16 @@ void Bureaucrat::decrementGrade(){
     _grade++;
 }
 
+void Bureaucrat::signForm(Form &form){
+    try{
+        form.beSigned(*this);
+        std::cout << "Bureaucrat" << this->getName() << " signed " << form << std::endl;
+    } catch (Form::GradeTooLowException &e){
+        std::cout << "Bureaucrat" << this->getName() << " couldn't sign " << form << " because " << e.what() << std::endl;
+    }
+}
+
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bur){
     os << bur.getName() << " Bureaucrat grade: " << bur.getGrade();
     return (os);
