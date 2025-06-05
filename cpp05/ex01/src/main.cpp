@@ -1,18 +1,24 @@
 #include "../include/Bureaucrat.hpp"
+#include "../include/Form.hpp"
 
 int main(){
 	std::cout << GREEN << "===== Início dos testes =====\n" << RESET << std::endl;
     try
 	{
-		std::cout << GREEN << "Test 1: Construtor Bureaucrat Default" << RESET << std::endl;
-		Bureaucrat cheetos;
-		std::cout << cheetos << std::endl;
-		std::cout << GREEN << "Test 2: Construtor Bureaucrat with valid grade" << RESET << std::endl;
-		Bureaucrat paul("Paul", 15);
-		std::cout << paul << std::endl;
-		std::cout << GREEN << "Test 3: Construtor Bureaucrat with too high grade" << RESET << std::endl;
-		Bureaucrat sally("Sally", -5);
-		std::cout << sally << std::endl;
+		std::cout << GREEN << "Test: Create a form with valid values" << RESET << std::endl;
+		Form f1("Form A", 60, 50);
+		std::cout << f1 << std::endl;
+		std::cout << PURPLE << "Test 1: Bureaucrat with grade to sign" << RESET << std::endl;
+		Bureaucrat b1("Piter", 60);
+		std::cout << b1 << std::endl;
+
+		b1.signForm(f1);
+		std::cout << b1 << std::endl;
+		std::cout << PURPLE << "Test 2: Bureaucrat without grade to sign" << RESET << std::endl;
+		Bureaucrat b2("Laura", 70);
+		std::cout << b2 << std::endl;
+
+		b2.signForm(f1);
 	}
 	catch(const std::exception& e)
 	{
@@ -20,9 +26,10 @@ int main(){
 	}
 	try
 	{
-		std::cout << GREEN << "Test 4: Construtor Bureaucrat with too low grade" << RESET << std::endl;
-		Bureaucrat bill("Bill", 200);
-		std::cout << bill << std::endl;
+		std::cout << GREEN << "Test: Exceptions(form)" << RESET << std::endl;
+		std::cout << PURPLE << "Test 3: Form with grade out of bounds(too high)" << RESET << std::endl;
+		Form f2("Form B", 0, 50);
+		std::cout << f2 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -30,32 +37,12 @@ int main(){
 	}
 	try
 	{
-		std::cout << GREEN << "Test 5: Increment the Grade" << RESET << std::endl;
-		Bureaucrat jenny("Jenny", 10);
-		jenny.incrementGrade();
-		std::cout << jenny << std::endl;
-		std::cout << GREEN << "Test 6: Decrement the Grade" << RESET << std::endl;
-		jenny.decrementGrade();
-		jenny.decrementGrade();
-		std::cout << jenny << std::endl;
-		std::cout << GREEN << "Test 7: Surpess the upper grade" << RESET << std::endl;
-		for (int i = 0; i < 20; i++)
-			jenny.incrementGrade();
+		std::cout << PURPLE << "Test 4: Form with grade out of bounds(too high)" << RESET << std::endl;
+		Form f3("Form C", 151, 40);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	try
-	{
-		Bureaucrat kelly("Kelly", 50);
-		std::cout << GREEN << "Test 8: Surpess the upper grade" << RESET << std::endl;
-		for (int i = 0; i < 200; i++)
-			kelly.decrementGrade();
-		std::cout << kelly << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	return 0;
 }

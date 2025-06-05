@@ -19,10 +19,12 @@
 # define ORANGE "\033[38;5;208m"
 # define RESET "\033[0m"
 
+class Bureaucrat;
+
 class Form{
 	private:
 		const std::string _name;
-		bool _isSigned = false;
+		bool _isSigned;
 		const int _gradeSign;
 		const int _gradeExecute;
 	public:
@@ -34,8 +36,8 @@ class Form{
 
 		//getter
 		const std::string getName() const;
-		const int getGradeSign() const;
-		const int getGradeExecute() const;
+		int getGradeSign() const;
+		int getGradeExecute() const;
 		bool getIsSigned() const;
 
 		void beSigned(Bureaucrat &bureaucrat);
@@ -43,12 +45,16 @@ class Form{
 		// Exception
 		class GradeTooHighException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				virtual const char *what() const throw(){
+					return("Grade too High");
+				}
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				virtual const char* what() const throw();
+				virtual const char *what() const throw(){
+					return("Grade too Low");
+				}
 		};
 };
 
