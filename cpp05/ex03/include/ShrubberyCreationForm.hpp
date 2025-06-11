@@ -15,6 +15,7 @@ public:
     ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
     ~ShrubberyCreationForm();
     void execute(Bureaucrat const & executor) const;
+    static AForm *create(const std::string &target);
 private:
     std::string _target;
 };

@@ -24,6 +24,10 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return *this;
 }
 
+AForm *RobotomyRequestForm::create(const std::string &target){
+    return new RobotomyRequestForm(target);
+}
+
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
     if (!getIsSigned())
         throw AForm::FormNotSignedException();

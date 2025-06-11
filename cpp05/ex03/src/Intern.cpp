@@ -15,18 +15,26 @@ Intern &Intern::operator=(const Intern &rhs) {
     return *this;
 }
 
+//Nao usar if ou else
 AForm *Intern::makeForm(const std::string &formName, const std::string &target) {
-    AForm *form = NULL;
+    std::string forms[3] = {
+        "shrubbery creation",
+        "robotomy request",
+        "presidencial pardon"
+    };
 
-    if (formName == "shrubbery creation") {
-        form = new ShrubberyCreationForm(target);
-    } else if (formName == "robotomy request") {
-        form = new RobotomyRequestForm(target);
-    } else if (formName == "presidential pardon") {
-        form = new PresidentialPardonForm(target);
-    } else {
-        throw FormNotFoundException();
+    AForm *(*formCreator[3])(const std::string &) = {
+        &ShrubberyCreationForm::create,
+        &RobotomyRequestForm::create,
+        &PresidentialPardonForm::create
+    };
+
+    for (int i = 0; i < 3; ++i) {
+        if (formName == forms[i]) {
+            std::cout << "Intern creates " << formName << std::endl;
+            return formCreator[i](target);
+        }
     }
-    std::cout << "Intern creates " << form->getName() << std::endl;
-    return form;
+    std::cout << "Intern couldn't find the form: " << formName << std::endl;
+    return NULL;
 }
