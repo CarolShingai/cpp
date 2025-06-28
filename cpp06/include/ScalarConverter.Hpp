@@ -1,6 +1,13 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 # include <iostream>
+# include <cctype>
+
+enum e_type{
+	INT,
+	DOUBLE,
+	FLOAT
+};
 
 class ScalarConverter{
 	private:
