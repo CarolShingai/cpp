@@ -8,40 +8,89 @@ ScalarConverter::ScalarConverter(const ScalarConverter &copy){}
 
 ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &other){}
 
-void	ScalarConverter::convert(std::string &data){
-	// verificar se 'e um pseudo literal -> pronto
-	// verificar se se sao caracteris nao numericos
-	// verificar se na string tem . e f
-	// verificar se 'e printable
-	// indicar o tipo
+// identificar o tipo
+e_type identifyType(std::string &data){
+	if (isPseudoLiteral(data))
+		return PSEUDOLITERAL;
+	else if (isAlpha(data))
+		return CHAR;
+	e_type num = isNumericType(data);
+	return num;
 }
 
 bool	isPseudoLiteral(std::string &data){
 	return data == "-inff" || data == "+inff" || data == "nanf" ||
-		data == "-inf" || data == "+inf" || data == "nan";
+	data == "-inf" || data == "+inf" || data == "nan";
 }
 
 bool	isAlpha(std::string &data){
 	for (int i = 0; i < data.length(); i++){
 		if (!std::isalpha(data[i]))
-			return false;
+		return false;
 	}
 	return true;
 }
 
-e_type identifyType(std::string &data){
-	return 
+// verificar se consegue transformar par INT, FLOAT, DOBLE
+e_type isNumericType(std::string &data){
+	if (isInt(data))
+		return INT;
+	else if (isFloat(data))
+		return FLOAT;
+	else if (isDouble(data))
+		return DOUBLE;
+	else
+		return OTHER;
 }
 
-// Sobrecarga de funcao
-e_type getType(int data){
-	return INT;
+bool isInt(std::string &data){
+	try{
+		/* stoi transforma data para int e pega a posição do ultimo
+		 caracter casteado. Ex: 255abc -> no número terá casting*/
+		size_t pos;
+
+		std::stoi(data, &pos);
+		return pos == data.size();
+		// (...)pega qualquer exceção
+	} catch(...){
+		return false;
+	}
 }
 
-e_type getType(double data){
-	return DOUBLE;
+bool isFloat(std::string &data){
+	// back retorna o ultimo caracter de data
+	// stof faz a transfomação para float
+	try{
+		if (data.back() == 'f')
+			std::stof(data);
+		else
+			return false;
+		return true;
+	} catch(...){
+		return false;
+	}
 }
 
-e_type getType(float data){
-	return FLOAT;
+bool isDouble(std::string &data){
+	try{
+		size_t pos;
+		std::stod(data, &pos);
+		return pos == data.size();
+	} catch(...){
+		return false;
+	}
+}
+
+void	ScalarConverter::convert(std::string &data){
+	e_type type = identifyType(data);
+	int n = 0;
+	if (data.empty())
+		n = 0;
+	for (int i = 0; i < data.size(); i++)
+		if (!std::isprint(data[i]))
+			
+
+
+
+
 }

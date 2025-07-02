@@ -6,7 +6,10 @@
 enum e_type{
 	INT,
 	DOUBLE,
-	FLOAT
+	FLOAT,
+	PSEUDOLITERAL,
+	CHAR,
+	OTHER
 };
 
 class ScalarConverter{
