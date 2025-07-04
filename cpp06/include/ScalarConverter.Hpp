@@ -25,4 +25,14 @@ class ScalarConverter{
 
 };
 
+e_type	identifyType(std::string &data);
+bool	isPseudoLiteral(std::string &data);
+bool	isAlpha(std::string &data);
+e_type	isNumericType(std::string &data);
+bool	isInt(std::string &data);
+bool	isDouble(std::string &data);
+bool	isUnprinteble(std::string &data);
+bool	isFloat(std::string &data);
+
+
 #endif
