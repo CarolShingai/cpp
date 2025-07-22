@@ -52,6 +52,7 @@
 		"span": "cpp",
 		"ctime": "cpp",
 		"iomanip": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"map": "cpp"
 	}
 }
