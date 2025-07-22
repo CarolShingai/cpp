@@ -15,3 +15,23 @@ MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &other) {
         std::stack<T>::operator=(other);
     return *this;
 }
+
+template <typename T>
+typename std::stack<T>::container_type::iterator MutantStack<T>::begin() {
+    return std::stack<T>::c.begin();
+}
+
+template <typename T>
+typename std::stack<T>::container_type::iterator MutantStack<T>::end() {
+    return std::stack<T>::c.end();
+}
+
+template <typename T>
+typename std::stack<T>::container_type::const_iterator MutantStack<T>::begin() const {
+    return std::stack<T>::c.begin();
+}
+
+template <typename T>
+typename std::stack<T>::container_type::const_iterator MutantStack<T>::end() const {
+    return std::stack<T>::c.end();
+}

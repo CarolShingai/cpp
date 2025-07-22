@@ -1,5 +1,5 @@
 #compiler
-NAME = template
+NAME = iterator
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
