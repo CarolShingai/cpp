@@ -16,19 +16,25 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other){
 	return *this;
 }
 
+
+// talvez incluir validacao aqui
 bool BitcoinExchange::loadData(const std::string &filename){
-	std::ifstream file("data.csv");
+	std::ifstream file(filename);
 	if (!file.is_open()){
 		std::cerr << "Error: opening the file" << std::endl;
-		return 0;
+		return false;
 	}
-
 	std::string line;
 	std::getline(file, line);
-	while ()
+	while (std::getline(file, line))
 	{
-		/* code */
+		size_t pos = line.find(',');
+		if (pos == std::string::npos)
+			throw std::runtime_error("Invalid data format in file");
+		std::string date = line.substr(0, pos);
+		std::string rateStr = line.substr(pos + 1);
+		float rate = std::atof(rateStr.c_str());
+		this->_data[date] = rate;
 	}
-	
-	return 1;
+	return true;
 }
