@@ -15,6 +15,8 @@ rpn &rpn::operator=(const rpn &other){
 }
 
 void rpn::run(std::string expression){
+    if (!checkInput(expression))
+        return ;
     for (size_t i = 0; i < expression.size(); i++){
         if (expression[i] == ' ')
             continue;
@@ -55,5 +57,30 @@ void rpn::calculate(char op){
             this->_stack.push(a / b);
             break;
     }
+}
 
+bool rpn::checkInput(std::string str){
+    std::istringstream iss(str);
+    std::string token;
+    while (iss >> token){
+        if(token == "+" || token == "-" || token == "*" || token == "/")
+            continue;
+        if (!checkValidNumber(token))
+            return false;
+    }
+    return true;
+}
+
+bool rpn::checkValidNumber(std::string str){
+    std::istringstream iss(str);
+    int num;
+    if (!(iss >> num) && !iss.eof()){
+        std::cerr << "Error: invalid operator '" << str << "'." << std::endl;
+        return false;
+    }
+    if (num < 0 || num > 9){
+        std::cerr << "Error: invalid number '" << str << "'." << std::endl;
+        return false;
+    }
+    return true;
 }

@@ -4,6 +4,8 @@
 # include <stack>
 # include <iostream>
 # include <string>
+# include <sstream>
+# include <cctype>
 
 class rpn{
     private:
@@ -16,6 +18,8 @@ class rpn{
 
         void run(std::string expression);
         void calculate(char op);
+        bool checkInput(std::string str);
+        bool checkValidNumber(std::string str);
 };
 
 
