@@ -1,5 +1,5 @@
 #compiler
-NAME = iterator
+NAME = RPN
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -9,7 +9,7 @@ OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC = $(SRC_DIR)/main.cpp
+SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/RPN.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules
