@@ -1,5 +1,7 @@
 #ifndef BitcoinExchange_HPP
 #define BitcoinExchange_HPP
+
+
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -25,10 +27,13 @@ class BitcoinExchange{
 
 		float getRate(const std::string date);
 };
-void	readInputFile(const char *inputFile);
-bool	checkInputFile(std::string inputLine);
+void	readInputFile(const char *inputFile, BitcoinExchange exchange);
+bool	checkInputFile(std::string inputLine, BitcoinExchange exchange);
 bool	check_date(std::string &date);
-int		getCurrentYear();
+bool	check_value(float value);
+bool	checkIsOnlySpace(std::string line);
+int		getCurrentYear(void);
+void	printFormat(std::string date, float value, BitcoinExchange exchange);
 
 
 #endif
