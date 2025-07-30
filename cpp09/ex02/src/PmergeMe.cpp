@@ -28,6 +28,8 @@ void Pmerge::run(int argc, char **argv){
 	}
 	printVec(0, this->_vec);
 	printDec();
+	fordJohnson();
+	printVec(1, this->_vec);
 }
 
 bool Pmerge::checkArgs(int argc, char **argv){
@@ -43,7 +45,7 @@ bool Pmerge::checkArgs(int argc, char **argv){
 
 std::vector<size_t> Pmerge::generateJacobstallSequence(size_t len){
 	std::vector<size_t> _order;
-	size_t j0 = 0;
+	size_t j0 = 1;
 	size_t j1 = 1;
 
 	while(j1 < len){

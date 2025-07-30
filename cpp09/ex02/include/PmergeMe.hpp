@@ -22,13 +22,15 @@ class Pmerge{
 		void	run(int argc, char **argv);
 		bool	checkArgs(int argc, char **argv);
 		std::vector<size_t>	generateJacobstallSequence(size_t len);
-		
+
 		// methods for vector
 		void	printVec(int after, std::vector<int> v);
-		void	fordJohnsonStep1(void);
-		void	fordJohnsonStep2(std::vector<int> big, std::vector<int> small);
+		void	fordJohnson(void);
+		void	fordJohnsonStep1(std::vector<int> &big, std::vector<int> &small);
+		void	fordJohnsonStep2(std::vector<int> &big, std::vector<int> &small);
+		void	orderByJacobstallSeq(std::vector<int> &big, std::vector<int> &small);
 		std::vector<int> &getVec(void);
-		
+
 		// methods for deque
 		void	printDec(void);
 		std::deque<int> &getDeq(void);
