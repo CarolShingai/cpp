@@ -9,7 +9,7 @@ OBJ_DIR = ./obj
 BIN_DIR = bin
 
 # archives
-SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/PmergeMe.cpp $(SRC_DIR)/vectorUtils.cpp
+SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/PmergeMe.cpp $(SRC_DIR)/vectorUtils.cpp $(SRC_DIR)/decUtils.cpp
 OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Rules

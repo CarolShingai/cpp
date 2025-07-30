@@ -26,15 +26,8 @@ void Pmerge::run(int argc, char **argv){
 		_vec.push_back(std::atoi(argv[i]));
 		_deq.push_back(std::atoi(argv[i]));
 	}
-	printVec();
-}
-
-std::vector<int> &Pmerge::getVec(void){
-	return this->_vec;
-}
-
-std::deque<int> &Pmerge::getDeq(void){
-	return this->_deq;
+	printVec(0, this->_vec);
+	printDec();
 }
 
 bool Pmerge::checkArgs(int argc, char **argv){
@@ -46,4 +39,18 @@ bool Pmerge::checkArgs(int argc, char **argv){
 		}
 	}
 	return true;
+}
+
+std::vector<size_t> Pmerge::generateJacobstallSequence(size_t len){
+	std::vector<size_t> _order;
+	size_t j0 = 0;
+	size_t j1 = 1;
+
+	while(j1 < len){
+		_order.push_back(j1);
+		size_t next = j1 + 2 * j0;
+		j0 = j1;
+		j1 = next;
+	}
+	return _order;
 }
