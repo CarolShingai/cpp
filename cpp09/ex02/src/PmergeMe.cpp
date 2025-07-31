@@ -27,9 +27,13 @@ void Pmerge::run(int argc, char **argv){
 		_deq.push_back(std::atoi(argv[i]));
 	}
 	printVec(0, this->_vec);
-	printDec();
-	fordJohnson();
+	printDec(0, this->_deq);
+	fordJohnsonVec();
+	clock_t deq_start = clock();
+	fordJohnsonDeq();
+	clock_t deq_end = clock();
 	printVec(1, this->_vec);
+	printDec(1, this->_deq);
 }
 
 bool Pmerge::checkArgs(int argc, char **argv){

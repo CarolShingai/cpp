@@ -15,12 +15,14 @@ std::vector<int> &Pmerge::getVec(void){
 	return this->_vec;
 }
 
-void Pmerge::fordJohnson(){
+void Pmerge::fordJohnsonVec(){
 	std::vector<int> _smallValues;
 	std::vector<int> _bigValues;
+	clock_t vec_start = clock();
 	fordJohnsonStep1(_bigValues, _smallValues);
 	fordJohnsonStep2(_bigValues, _smallValues);
-
+	this->_vec = _bigValues;
+	clock_t vec_end = clock();
 }
 
 void Pmerge::fordJohnsonStep1(std::vector<int> &big, std::vector<int> &small){
@@ -38,27 +40,23 @@ void Pmerge::fordJohnsonStep1(std::vector<int> &big, std::vector<int> &small){
 		small.push_back(_pairs[i].first);
 		big.push_back(_pairs[i].second);
 	}
-	if (getVec().size() % 2 != 0){
+	if (getVec().size() % 2 != 0)
 		small.push_back(getVec().back());
-		std::cout << "ultimo: " << getVec().back() << std::endl;
-	}
 }
 
 void Pmerge::fordJohnsonStep2(std::vector<int> &big, std::vector<int> &small){
 	std::sort(big.begin(), big.end());
-
-	orderByJacobstallSeq(big, small);
-	// order following the order in small
+	orderByJacobstallSeq_vec(big, small);
+	// order following small order
 	while(!small.empty()){
 		int value = *small.begin();
-		std::cout << "valor: " << value << std::endl;
 		std::vector<int>::iterator pos = std::lower_bound(big.begin(), big.end(), value);
 		big.insert(pos, value);
 		small.erase(small.begin());
 	}
 }
 
-void Pmerge::orderByJacobstallSeq(std::vector<int> &big, std::vector<int> &small){
+void Pmerge::orderByJacobstallSeq_vec(std::vector<int> &big, std::vector<int> &small){
 	std::vector<size_t> _jacobSeq = generateJacobstallSequence(small.size());
 
 	while(!_jacobSeq.empty()){
