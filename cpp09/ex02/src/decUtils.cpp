@@ -117,7 +117,7 @@ void Pmerge::fordJohnsonDeqPairs(const std::deque<int> &inputDeque, std::deque<i
  * Algorithm steps:
  * 1. If big has more than 1 element, recursively sort it using pair reduction
  * 2. Insert elements from small into big using Jacobsthal sequence order
- * 3. Insert any remaining elements from small in sequential order
+ * 3. Insert any remaining elements from small in back to front sequential order
  *
  * @param big   Reference to the deque containing the larger elements (will be modified in place).
  * @param small Reference to the deque containing the smaller elements (will be emptied).
@@ -135,10 +135,10 @@ void Pmerge::fordJohnsonDeq2(std::deque<int> &big, std::deque<int> &small){
 	}
 	orderByJacobstallSeq_deq(big, small);
 	while(!small.empty()){
-		int value = *small.begin();
+		int value = small.back();
 		std::deque<int>::iterator pos = std::lower_bound(big.begin(), big.end(), value);
 		big.insert(pos, value);
-		small.erase(small.begin());
+		small.pop_back();
 	}
 }
 

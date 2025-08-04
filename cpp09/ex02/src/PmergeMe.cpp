@@ -85,8 +85,13 @@ void Pmerge::run(int argc, char **argv){
 		return ;
 	}
 	for (int i = 1; i < argc; i++){
-		_vec.push_back(std::atoi(argv[i]));
-		_deq.push_back(std::atoi(argv[i]));
+		long value = std::atol(argv[i]);
+		if (value > INT_MAX){
+			std::cerr << "Error" << std::endl;
+			return ;
+		}
+		_vec.push_back(value);
+		_deq.push_back(value);
 	}
 	printVec(0, this->_vec);
 	fordJohnsonVec();
@@ -116,6 +121,8 @@ void Pmerge::run(int argc, char **argv){
  */
 bool Pmerge::checkArgs(int argc, char **argv){
 	for (int i = 1; i < argc; i++){
+		if (argv[i][0] == '\0')
+			return false;
 		std::string str(argv[i]);
 		for (size_t j = 0; j < str.size(); j++){
 			if (!std::isdigit(str[j]))

@@ -8,6 +8,7 @@
 # include <cstdlib>
 # include <cctype>
 # include <algorithm>
+# include <climits>
 
 class Pmerge{
 	private:

@@ -125,27 +125,15 @@ void Pmerge::fordJohnsonStep2(std::vector<int> &big, std::vector<int> &small){
 		big = newBig;
 	}
 	orderByJacobstallSeq_vec(big, small);
-	// order following small order
+	// order following small order back to front, when there is no more sequence to add
 	while(!small.empty()){
-		int value = *small.begin();
+		int value = small.back();
 		std::vector<int>::iterator pos = std::lower_bound(big.begin(), big.end(), value);
 		big.insert(pos, value);
-		small.erase(small.begin());
+		small.pop_back();
 	}
 }
 
-/**
- * @brief Inserts elements from the 'small' vector into the 'big' vector following the Jacobsthal sequence order.
- *
- * This function takes two vectors of integers, 'big' and 'small'. It generates a Jacobsthal sequence
- * based on the size of 'small', and for each index in the sequence, it inserts the corresponding element
- * from 'small' into the correct sorted position in 'big' using std::lower_bound. The inserted element is
- * then removed from 'small'. This process continues until all elements from 'small' have been inserted
- * into 'big' according to the Jacobsthal sequence.
- *
- * @param big   Reference to the vector where elements from 'small' will be inserted in sorted order.
- * @param small Reference to the vector containing elements to be inserted into 'big'.
- */
 /**
  * @brief Orders elements from 'small' vector into 'big' vector using the Jacobsthal sequence.
  *

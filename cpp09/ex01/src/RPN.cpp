@@ -50,10 +50,8 @@ void rpn::calculate(char op){
             this->_stack.push(a * b);
             break;
         case '/': 
-            if (b == 0){
-                std::cerr << "Error: division by zero." << std::endl;
-                return;
-            }
+            if (b == 0)
+                throw std::runtime_error("Error: Division by zero.");
             this->_stack.push(a / b);
             break;
     }

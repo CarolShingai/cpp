@@ -43,9 +43,6 @@ bool BitcoinExchange::loadData(const std::string &filename){
 
 float BitcoinExchange::getRate(const std::string date){
 	std::map<std::string, float>::iterator it = this->_data.lower_bound(date);
-
-	if (it != this->_data.end())
-		return it->second;
 	if (it == this->_data.begin())
 		throw std::runtime_error("Error: Date is too early.");
 	--it;
@@ -67,6 +64,7 @@ void readInputFile(const char *file, BitcoinExchange exchange){
 }
 
 bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
+	inputLine.erase(std::remove(inputLine.begin(), inputLine.end(), ' '), inputLine.end());
 	if (inputLine.empty() || checkIsOnlySpace(inputLine)){
 		std::cerr << "Error: bad input => empty line" << inputLine << std::endl;
 		return false;
@@ -81,7 +79,7 @@ bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
 		return false;
 	}
 	std::string date = inputLine.substr(0, pipe);
-	std::string value = inputLine.substr(pipe + 1, value.size());
+	std::string value = inputLine.substr(pipe + 1);
 	float floatValue = std::atof(value.c_str());
 	if (!check_date(date)){
 		std::cerr << "Error: bad input => " << inputLine << std::endl;
@@ -99,7 +97,7 @@ bool check_date(std::string &date){
 	int day = std::atoi(date.substr(8,2).c_str());
 	int currentYear = getCurrentYear();
 
-	if (month < 1 || month > 13)
+	if (month < 1 || month > 12)
 		return false;
 	if ((day < 1 || day > 31) || (month == 2 && day > 29))
 		return false;
