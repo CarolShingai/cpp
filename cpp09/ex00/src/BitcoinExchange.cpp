@@ -80,18 +80,19 @@ bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
 	}
 	std::string date = inputLine.substr(0, pipe);
 	std::string value = inputLine.substr(pipe + 1);
-	float floatValue = std::atof(value.c_str());
 	if (!check_date(date)){
 		std::cerr << "Error: bad input => " << inputLine << std::endl;
 		return false;
 	}
-	if (!check_value(floatValue))
+	if (!check_value(value))
 		return false;
-	printFormat(date, floatValue, exchange);
+	printFormat(date, std::atof(value.c_str()), exchange);
 	return true;
 }
 
 bool check_date(std::string &date){
+	if (!dataFormat(date))
+		return false;
 	int year = std::atoi(date.substr(0,4).c_str());
 	int month = std::atoi(date.substr(5,2).c_str());
 	int day = std::atoi(date.substr(8,2).c_str());
@@ -106,12 +107,19 @@ bool check_date(std::string &date){
 	return true;
 }
 
-bool check_value(float value){
-	if (value < 0){
+bool check_value(std::string value){
+	for (size_t i = 0; i < value.size(); i++){
+		if (!std::isdigit(value[i]) && value[i] != '.'){
+			std::cerr << "Error: not a positive number." << std::endl;
+			return false;
+		}
+	}
+	float floatValue = std::atof(value.c_str());
+	if (floatValue < 0){
 		std::cerr << "Error: not a positive number." << std::endl;
 		return false;
 	}
-	if (value > 1000){
+	if (floatValue > 1000){
 		std::cerr << "Error: too large a number." << std::endl;
 		return false;
 	}
@@ -134,4 +142,16 @@ int getCurrentYear(){
 
 void printFormat(std::string date, float value, BitcoinExchange exchange){
 	std::cout << date << " => " << value << " = " << exchange.getRate(date) * value << std::endl;
+}
+
+bool dataFormat(const std::string &date){
+	if (date.size() < 10)
+		return false;
+	for (size_t i = 0; i < date.size(); i++){
+		if (!std::isdigit(date[i]) && date[i] != '-')
+			return false;
+	}
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+		return false;
+	return true;
 }
