@@ -58,6 +58,10 @@ void rpn::calculate(char op){
 }
 
 bool rpn::checkInput(std::string str){
+    if (str.empty() || isOnlySpace(str)){
+        std::cerr << "Error: empty input." << std::endl;
+        return false;
+    }
     std::istringstream iss(str);
     std::string token;
     while (iss >> token){
@@ -79,6 +83,15 @@ bool rpn::checkValidNumber(std::string str){
     if (num < 0 || num > 9){
         std::cerr << "Error: invalid number '" << str << "'." << std::endl;
         return false;
+    }
+    return true;
+}
+
+bool isOnlySpace(const std::string &str) {
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (!std::isspace(str[i])) {
+            return false;
+        }
     }
     return true;
 }

@@ -29,11 +29,13 @@ class BitcoinExchange{
 };
 void	readInputFile(const char *inputFile, BitcoinExchange exchange);
 bool	checkInputFile(std::string inputLine, BitcoinExchange exchange);
-bool	check_date(std::string &date);
+bool	dataFormat(std::string &date);
+bool	check_date(int year, int month, int day);
 bool	check_value(std::string value);
 bool	checkIsOnlySpace(std::string line);
-bool	dataFormat(const std::string &date);
+bool	leapYear(int year);
 int		getCurrentYear(void);
+std::string trim(const std::string &str);
 void	printFormat(std::string date, float value, BitcoinExchange exchange);
 
 

@@ -64,7 +64,6 @@ void readInputFile(const char *file, BitcoinExchange exchange){
 }
 
 bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
-	inputLine.erase(std::remove(inputLine.begin(), inputLine.end(), ' '), inputLine.end());
 	if (inputLine.empty() || checkIsOnlySpace(inputLine)){
 		std::cerr << "Error: bad input => empty line" << inputLine << std::endl;
 		return false;
@@ -74,13 +73,13 @@ bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
 		std::cerr << "Error: bad input => " << inputLine << std::endl;
 		return false;
 	}
-	if (inputLine.find('|', pipe + 1) != inputLine.npos){
+	std::string date = trim(inputLine.substr(0, pipe));
+	std::string value = trim(inputLine.substr(pipe + 1));
+	if (date.empty() || value.empty()){
 		std::cerr << "Error: bad input => " << inputLine << std::endl;
 		return false;
 	}
-	std::string date = inputLine.substr(0, pipe);
-	std::string value = inputLine.substr(pipe + 1);
-	if (!check_date(date)){
+	if (dataFormat(date) == false){
 		std::cerr << "Error: bad input => " << inputLine << std::endl;
 		return false;
 	}
@@ -90,17 +89,30 @@ bool checkInputFile(std::string inputLine, BitcoinExchange exchange){
 	return true;
 }
 
-bool check_date(std::string &date){
-	if (!dataFormat(date))
+bool dataFormat(std::string &date){
+	if (date.size() < 10)
+		return false;
+	for (size_t i = 0; i < date.size(); i++){
+		if (!std::isdigit(date[i]) && date[i] != '-')
+			return false;
+	}
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
 		return false;
 	int year = std::atoi(date.substr(0,4).c_str());
 	int month = std::atoi(date.substr(5,2).c_str());
 	int day = std::atoi(date.substr(8,2).c_str());
+	if (!check_date(year, month, day))
+		return false;
+	return true;
+}
+
+bool check_date(int year, int month, int day){
 	int currentYear = getCurrentYear();
+	int daysInMonth[] = {31, (leapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (month < 1 || month > 12)
 		return false;
-	if ((day < 1 || day > 31) || (month == 2 && day > 29))
+	if (day < 1 || day > daysInMonth[month - 1])
 		return false;
 	if (year > currentYear)
 		return false;
@@ -108,6 +120,10 @@ bool check_date(std::string &date){
 }
 
 bool check_value(std::string value){
+	if (value.empty()){
+		std::cerr << "Error: not a positive number." << std::endl;
+		return false;
+	}
 	for (size_t i = 0; i < value.size(); i++){
 		if (!std::isdigit(value[i]) && value[i] != '.'){
 			std::cerr << "Error: not a positive number." << std::endl;
@@ -123,6 +139,14 @@ bool check_value(std::string value){
 		std::cerr << "Error: too large a number." << std::endl;
 		return false;
 	}
+	if (value == "."){
+		std::cerr << "Error: not a positive number." << std::endl;
+		return false;
+	}
+	if (std::count(value.begin(), value.end(), '.') > 1){
+		std::cerr << "Error: too many decimal points." << std::endl;
+		return false;
+	}
 	return true;
 }
 
@@ -132,6 +156,12 @@ bool checkIsOnlySpace(std::string line){
 			return false;
 	}
 	return true;
+}
+
+bool leapYear(int year){
+	if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+		return true;
+	return false;
 }
 
 int getCurrentYear(){
@@ -144,14 +174,12 @@ void printFormat(std::string date, float value, BitcoinExchange exchange){
 	std::cout << date << " => " << value << " = " << exchange.getRate(date) * value << std::endl;
 }
 
-bool dataFormat(const std::string &date){
-	if (date.size() < 10)
-		return false;
-	for (size_t i = 0; i < date.size(); i++){
-		if (!std::isdigit(date[i]) && date[i] != '-')
-			return false;
-	}
-	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
-		return false;
-	return true;
+std::string trim(const std::string &str){
+	if (str.empty())
+		return str;
+	size_t start = str.find_first_not_of(" \t");
+	if (start == std::string::npos)
+		return "";
+	size_t end = str.find_last_not_of(" \t");
+	return (str.substr(start, end - start + 1));
 }

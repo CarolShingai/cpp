@@ -22,5 +22,6 @@ class rpn{
         bool checkValidNumber(std::string str);
 };
 
+bool isOnlySpace(const std::string &str);
 
 #endif
